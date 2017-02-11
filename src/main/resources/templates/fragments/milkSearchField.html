@@ -1,0 +1,57 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body>
+  	<div th:fragment="milkSearchField" id="rightMenu"  class="row mobile-ofc">
+        <div class="small-12 medium-6 columns" style="display:inline">      
+            <fieldset class="fieldset">
+                <legend> 种类<span class="mgl label-mgl"></span></legend>
+                <input type="checkbox" name="type" value="1" ><label>白酥油<span class="mgl label-mgl">   </span><span class="mgl label-mgl">  </span></label>
+                <input type="checkbox" name="type" value="2" ><label >查嘎<span class="mgl label-mgl"> </span></label>
+                <input type="checkbox" name="type" value="3" ><label >达希玛<span class="mgl label-mgl"> </span></label>
+                <input type="checkbox" name="type" value="4" ><label >马奶<span class="mgl label-mgl"> </span></label>
+                <input type="checkbox" name="type" value="5" ><label >奶酪<span class="mgl label-mgl"> </span></label>
+                <input type="checkbox" name="type" value="6" ><label >奶皮<span class="mgl label-mgl"> </span></label>
+                <input type="checkbox" name="type" value="7" ><label >奶渣<span class="mgl label-mgl"> </span></label>
+                <input type="checkbox" name="type" value="8" ><label >沙日素<span class="mgl label-mgl"> </span></label>
+                <input type="checkbox" name="type" value="9" ><label >酥油<span class="mgl label-mgl">  </span><span class="mgl label-mgl"> </span></label>
+                <input type="checkbox" name="type" value="10" ><label >酸奶<span class="mgl label-mgl"> </span></label>
+                <input type="checkbox" name="type" value="11" ><label >鲜奶<span class="mgl label-mgl"> </span></label>
+            </fieldset>
+        </div>           
+       
+        <div class="small-12 medium-6 columns" style="display:inline">      
+            <fieldset class="fieldset">
+                <legend>品种<span class="mgl label-mgl"></span></legend>
+                <input type="checkbox" name="sourcetype" value="1" ><label>牛<span class="mgl label-mgl"> </span></label>
+                <input type="checkbox" name="sourcetype" value="2" ><label>绵羊<span class="mgl label-mgl"> </span></label>
+                <input type="checkbox" name="sourcetype" value="3" ><label >山羊<span class="mgl label-mgl"> </span></label>
+            </fieldset>
+        </div>           
+        <div class="small-12 medium-6 columns" style="display:inline">      
+            <div class="column row">
+                <div class="small-5 columns"> 
+                    <input type="number" min="0" name="minprice"  placeholder="￥">
+                </div>
+                <div class="small-2 columns" > 
+                    <hr>
+                </div>
+                <div class="small-5 columns">
+                    <input type="number" min="0" name="maxprice" placeholder="￥" >
+                </div>
+            </div>
+        </div>
+        <div class="small-12   columns">
+            <div class="input-group">
+                <span class="input-group-label">其他信息<span class="mgl label-mgl"> </span></span>
+                <input type="text" name = "other" class="input-group-field" placeholder="" />
+            </div>
+        </div>
+        <div class="small-12  columns">
+       		 <a href="javascript:void(0)"  onclick="loadMilkData(0,10)"  class="button  expanded">搜索<span class="mgl label-mgl"></span></a>
+        </div>      
+    </div>
+  </body>

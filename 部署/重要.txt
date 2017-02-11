@@ -1,0 +1,15 @@
+1. 10.1.251.11
+2. mysql���ص�
+3. maven build clean package
+4. targe/ende-0.0.1-SNAPSHOT.jar
+5. �ر�javaw����
+6. ����run.bat 
+
+
+��ӱ��ذ�
+mvn install:install-file -Dfile=D:\maven_repository\taobao-sdk-java.jar -DgroupId=com.alidayu.msg -DartifactId=ALiDaYu -Dversion=1.0 -Dpackaging=jar 
+
+#2017-02-10更新
+1.用户注册添加创建日期、和注册地字段
+2.添加监控，在health中可查看数据库信息
+3.验证码发送添加错误信息

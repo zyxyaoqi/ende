@@ -1,0 +1,267 @@
+
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>恩德</title>   
+    <link rel="stylesheet" href="../css/foundation.min.css">
+    <link rel="stylesheet" href="../css/app.css">
+     <link rel="stylesheet" href="../css/pageFont.css" />
+     <link rel="stylesheet" href="../css/pageStyle.css" />
+
+  </head>
+  <body>
+    
+    <!-- Start Top Bar -->
+      <nav class="top-bar">       
+        <ul class="menu mixmenu" style="    padding-top: 20px;">
+          <li class="mgl"> </li>   
+          <li class="mgl"></li>
+          <li class="mgl"></li>          
+          <li class="topbar-title">买入肉食品</li>           
+        </ul>
+        <ul class="menu">
+         <li><a href="../buyindex.html"><i class="icon icon-home"></i></a></li>          
+         <li><a href="#"><i class="icon icon-user"></i></a></li>
+         
+        </ul>       
+      </nav>
+    <!-- End Top Bar -->
+    <div class="off-canvas-wrapper">
+	<div class="off-canvas-wrapper-inner" data-off-canvas-wrapper>
+    	<div class="off-canvas position-right" id="offCanvasRight" data-off-canvas data-position="right">
+          <button class="close-button" aria-label="Close menu" type="button" data-close>
+            <span aria-hidden="true">&times;</span>
+          </button>
+           <div class="row mobile-ofc">
+           <form action ="" method="post">
+               <div class="column row">
+                    <div class="small-12 columns" style="display:inline">      
+                        <fieldset class="fieldset">
+                             <legend> 种类<span class="mgl label-mgl"></span></legend>
+                            <input type="radio" name="type" value="1" id="type"  checked required><label>牛<span class="mgl label-mgl"></span></label>
+                            <input type="radio" name="type" value="2" id="type"><label >羊<span class="mgl label-mgl"></span></label>
+                            <input type="radio" name="type" value="3" id="type"><label >山羊<span class="mgl label-mgl"></span></label>
+              
+                            <input type="radio" name="type" value="4" id="type"><label >猪<span class="mgl label-mgl"></span></label>
+                            <input type="radio" name="type" value="5" id="type"><label >鸡<span class="mgl label-mgl"> </span></label>
+                        </fieldset>
+                    </div>           
+                </div>        
+                <div class="column row" >
+                  <div class="small-12 columns">
+                      <div class="input-group">
+                        <span class="input-group-label">品种<span class="mgl label-mgl"></span></span>
+                        <select  name="pinzhong" id="pinzhong" class="input-group-field"  placeholder="选择一个品种" >
+                            <option value="0">所有</option>
+                            <option value="1">品种1</option>
+                            <option value="2">品种2</option>
+                            <option value="3">品种3</option>
+                            <option value="4">品种4</option>
+                        </select>   
+                    </div>
+                  </div>
+              </div>
+               <div class="column row">
+                <div class="small-12 columns">
+                   <div class="input-group">
+                     <span class="input-group-label">类型<span class="mgl label-mgl"></span></span>
+                      <select name="leixing" id="leixing" class="input-group-field " placeholder="选择一个类型">
+                        <option value="0">所有</option>
+                        <option value="1">类型1</option>
+                        <option value="2">类型2</option>
+                        <option value="3">类型3</option>
+                        <option value="4">类型4</option>
+                      </select>
+                    </div>
+                  </div>
+                  
+                  </form>
+                </div>
+                <div class="column row">
+                    <div class="small-12 columns" style="display:inline">      
+                        <fieldset class="fieldset">
+                             <legend> 养殖方式<span class="mgl label-mgl"> </span><span class="mgl label-mgl"></span></legend>
+                             
+                            <input type="checkbox" name="growType1" value="1" id="pinzhong" ><label>散养<span class="mgl label-mgl"> </span></label>
+                            <input type="checkbox" name="growType2" value="2" id="pinzhong"><label >圈养<span class="mgl label-mgl">	</span></label>
+        
+                        </fieldset>
+                    </div>           
+                </div>
+                <div class="column row">
+                    <div class="small-12 columns">
+                        <div class="input-group">
+                            <span class="input-group-label">其他信息<span class="mgl label-mgl"> </span></span>
+                            <input type="text" class="input-group-field" placeholder="" />
+                        </div>
+                    </div>
+                </div>
+                
+                <a href="#" class="button  expanded">搜索<span class="mgl label-mgl"></span></a> 
+                
+            </div>
+           </div>
+    
+
+    <div class="off-canvas-content" data-off-canvas-content>       
+         
+    <div class="row show-for-medium">
+      <div class="medium-6 columns">
+          <div class="row">
+            <div class="small-12 columns" style="display:inline">      
+        		<fieldset class="fieldset">
+ 					 <legend> 种类<span class="mgl label-mgl"></span></legend>
+					<input type="radio" name="type" value="1" id="type"  checked required><label>牛<span class="mgl label-mgl"></span></label>
+   					<input type="radio" name="type" value="2" id="type"><label >羊<span class="mgl label-mgl"></span></label>
+                    <input type="radio" name="type" value="3" id="type"><label >山羊<span class="mgl label-mgl"></span></label>
+      
+					<input type="radio" name="type" value="4" id="type"><label >猪<span class="mgl label-mgl"></span></label>
+                    <input type="radio" name="type" value="5" id="type"><label >鸡<span class="mgl label-mgl"> </span></label>
+				</fieldset>
+			</div>           
+        </div>        
+        <div class="row" >
+          <div class="small-12 columns">
+              <div class="input-group">
+  				<span class="input-group-label">品种<span class="mgl label-mgl"></span></span>
+ 				<select  name="pinzhong" id="pinzhong" class="input-group-field"  placeholder="选择一个品种" >
+                    <option value="0">所有</option>
+                	<option value="1">品种1</option>
+                	<option value="2">品种2</option>
+                	<option value="3">品种3</option>
+                	<option value="4">品种4</option>
+              	</select>   
+			</div>
+          </div>
+      </div>
+       <div class="row">
+        <div class="small-12 columns">
+           <div class="input-group">
+             <span class="input-group-label">类型<span class="mgl label-mgl"></span></span>
+              <select name="leixing" id="leixing" class="input-group-field " placeholder="选择一个类型">
+                <option value="0">所有</option>
+                <option value="1">类型1</option>
+                <option value="2">类型2</option>
+                <option value="3">类型3</option>
+                <option value="4">类型4</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="medium-6 large-5 columns">
+        <div class="row">
+            <div class="small-12 columns" style="display:inline">      
+        		<fieldset class="fieldset">
+ 					 <legend> 养殖方式<span class="mgl label-mgl"> </span><span class="mgl label-mgl"></span></legend>
+					 
+                    <input type="checkbox" name="growType1" value="1" id="pinzhong" ><label>散养<span class="mgl label-mgl"> </span></label>
+   					<input type="checkbox" name="growType2" value="2" id="pinzhong"><label >圈养<span class="mgl label-mgl">	</span></label>
+
+				</fieldset>
+			</div>           
+        </div>
+ 		<div class="row">
+            <div class="small-12 columns">
+            	<div class="input-group">
+             		<span class="input-group-label">其他信息<span class="mgl label-mgl"> </span></span>
+             		<input type="text" class="input-group-field" placeholder="" />
+                </div>
+            </div>
+        </div>
+                 
+        <a href="#" class="button large expanded">搜索<span class="mgl label-mgl"></span></a> 
+    </div>
+   </div>
+   
+      
+      <div class="title-bar hide-for-medium">
+        <div class="title-bar-right">
+          <button class="menu-icon" type="button" data-open="offCanvasRight"></button>
+          <span class="title-bar-title">筛选</span>
+        </div>
+      </div>
+      
+      <div class="column row">
+      <hr>       
+      <div class="" data-tabs-content="example-tabs">
+        <div class="tabs-panel is-active" id="panel1">         
+          <div class="media-object stack-for-small">
+            <div class="media-object-section">
+              <img class="thumbnail" src="http://placehold.it/200x200">
+            </div>
+            <div class="media-object-section">
+               <p>品种</p>
+              <p>类型</p>
+              <p>数量</p>
+              <p>养殖方式</p>
+              <p>联系人</p>             
+              <p>联系方式</p>
+              <p>详细地址</p>
+              <p>备注</p>
+            </div>
+          </div>
+          <div class="media-object stack-for-small">
+            <div class="media-object-section">
+              <img class="thumbnail" src="http://placehold.it/200x200">
+            </div>
+            <div class="media-object-section">
+              <p>品种</p>
+              <p>类型</p>
+              <p>数量</p>
+              <p>养殖方式</p>
+              <p>联系人</p>             
+              <p>联系方式</p>
+              <p>详细地址</p>
+              <p>备注</p>
+            </div>
+          </div>
+          <div class="media-object stack-for-small">
+            <div class="media-object-section">
+              <img class="thumbnail" src="http://placehold.it/200x200">
+            </div>
+            <div class="media-object-section">
+               <p>品种</p>
+              <p>类型</p>
+              <p>数量</p>
+              <p>养殖方式</p>
+              <p>联系人</p>             
+              <p>联系方式</p>
+              <p>详细地址</p>
+              <p>备注</p>
+            </div>
+          </div>
+          
+        </div>
+        
+      </div>
+    </div>
+      
+    </div>
+    
+    <ul class="pagination text-center" role="navigation" aria-label="Pagination">
+      <li class="pagination-previous disabled">上一页 <span class="show-for-sr">page</span></li>
+      <li class="current"><span class="show-for-sr">You're on page</span> 1</li>
+      <li><a href="#" aria-label="Page 2">2</a></li>
+      <li><a href="#" aria-label="Page 3">3</a></li>
+      <li><a href="#" aria-label="Page 4">4</a></li>
+      <li class="ellipsis" aria-hidden="true"></li>
+      <li><a href="#" aria-label="Page 12">12</a></li>
+      <li><a href="#" aria-label="Page 13">13</a></li>
+      <li class="pagination-next"><a href="#" aria-label="Next page">下一页 <span class="show-for-sr">page</span></a></li>
+    </ul>
+    
+  </div>
+ </div>
+
+ 
+     <script src="../js/jquery.min.js"></script>  
+    <script src="../js/foundation.min.js"></script>
+    <script src="../js/app.js"></script>
+  </body>
+</html>
+
+
+    

@@ -1,0 +1,51 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body>
+  	<div th:fragment="meatSearchField" id="rightMenu" class="row mobile-ofc" >
+                    <div class="small-12 medium-6 columns" style="display:inline">      
+                        <fieldset class="fieldset">
+                            <legend> 种类<span class="mgl label-mgl"></span></legend>
+                            <input type="checkbox" name="species" onclick="showHideField(this.value)" value="1" id="type"><label >绵羊<span class="mgl label-mgl"></span></label>
+                            <input type="checkbox" name="species" onclick="showHideField(this.value)" value="2" id="type"><label>牛<span class="mgl label-mgl"></span></label>
+                            <input type="checkbox" name="species" onclick="showHideField(this.value)" value="3" id="type"><label >山羊<span class="mgl label-mgl"></span></label>
+                            <input type="checkbox" name="species" onclick="showHideField(this.value)" value="4" id="type"><label >猪<span class="mgl label-mgl"></span></label>
+                            <input type="checkbox" name="species" onclick="showHideField(this.value)" value="5" id="type"><label >鸡<span class="mgl label-mgl"> </span></label>
+                        </fieldset>
+                    </div>
+                  	<div class="small-12 medium-6 columns" style="display:inline">      
+                        <fieldset class="fieldset" id="breed-field">
+                            <legend>品种<span class="mgl label-mgl"></span><span class="mgl label-mgl"></span></legend>
+                        </fieldset>
+                    </div> 
+                     <div class="small-12 medium-6 columns" style="display:inline">      
+                        <fieldset class="fieldset" id="type-field">
+                            <legend>类型<span class="mgl label-mgl"></span><span class="mgl label-mgl"></span></legend>
+                        </fieldset>
+                    </div> 
+                    <div class="small-12 medium-6 columns" style="display:inline">      
+                        <fieldset class="fieldset" id="feedtype-field">
+                            <legend> 养殖方式<span class="mgl label-mgl"> </span><span class="mgl label-mgl"></span></legend>
+                            <input type="checkbox" name="feedtype" value="1" ><label>散养<span class="mgl label-mgl"> </span></label>
+                            <input type="checkbox" name="feedtype" value="2" ><label >圈养<span class="mgl label-mgl">	</span></label>
+                        </fieldset>
+                    </div>           
+           
+                    <div class="small-12 medium-6 columns" style="display:inline">
+                        <div class="input-group">
+                            <span class="input-group-label">其他信息<span class="mgl label-mgl"> </span></span>
+                            <input type="text" name = "other" class="input-group-field" placeholder="" />
+                        </div>
+                    </div>
+	                <div class="small-12 medium-6 columns">
+	               		 <a href="javascript:void(0)"  onclick="loadMeatData(0,10)"  class="button  expanded">搜索<span class="mgl label-mgl"></span></a>
+	                </div>
+	                 
+    </div>
+  </body>
+</html>
+
+
