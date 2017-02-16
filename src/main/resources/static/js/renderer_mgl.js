@@ -46,10 +46,17 @@ var Global_sourcetype = {
     4: {"id":"4", "text":"其他","mgltext":""}
 }
 	
-function initMeatSelectDom(breeDom, typeDom, sepeics) {
+/**
+ * 根据种类初始化下拉框选项
+ * @param breeDom 品种DOM
+ * @param typeDom 类型DOM
+ * @param species 种类
+ * @returns
+ */
+function initMeatSelectDom(breeDom, typeDom, species) {
 	for(var i =0 ; i< Global_breed[species-1].length; i++){
 	    var e = Global_breed[species-1][i];	
-		breeDom.append("<option value=" + e.id + " mgltext='" + e.mgltext +  "'>" + e.text+ "</option>"); 
+	    breeDom.append("<option value=" + e.id + " mgltext='" + e.mgltext +  "'>" + e.text+ "</option>"); 
 	}
 		
 	for(var i =0 ; i< Global_type[species-1].length; i++){
@@ -58,6 +65,14 @@ function initMeatSelectDom(breeDom, typeDom, sepeics) {
 	}
 	
 }
+/**
+ * 修饰Form表单页面的Title
+ * @param textDom
+ * @param mglTextDom
+ * @param id
+ * @param meatOrMilk
+ * @returns
+ */
 
 function initTitleDom(textDom, mglTextDom, id , meatOrMilk) {
     var txt;
@@ -74,7 +89,10 @@ function initTitleDom(textDom, mglTextDom, id , meatOrMilk) {
 	mglTextDom[0].innerHTML = mgltxt;
 }
 
-
+/**
+ * 渲染肉食品列表
+ * @returns
+ */
 function renderMeatList() {
     $('#meatdata').find(".meat_item_content").each(function(i){
 	   var data =  $(this).get(0).innerHTML.split(",") 	;
@@ -121,7 +139,15 @@ function renderMilkList() {
 	});
 }
 
-function renderSerchField(data, index, domname, inputName) {
+/**
+ * 动态生成搜索页面中的品种和类型等
+ * @param data
+ * @param index
+ * @param domname
+ * @param inputName
+ * @returns
+ */
+function renderSearchField(data, index, domname, inputName) {
 	var str = [];	
 	for(var i in data[index]){
 		str.push("<input type='checkbox' name='"+ inputName +"' value='");
@@ -134,36 +160,32 @@ function renderSerchField(data, index, domname, inputName) {
 		//str.push("</span>");
 		str.push("</label>");
 	}
-	var dom1 = $("#medium-form").find("#"+domname)[0];
-	var dom2 = $("#small-form").find("#"+domname)[0];
+	var dom1 = $("#medium-form").find("#"+domname);
+	var dom2 = $("#small-form").find("#"+domname);
 	
-	dom1.innerHTML= dom1.innerHTML + str.join("");
-	dom2.innerHTML= dom2.innerHTML + str.join("");
+	dom1.append(str.join(""));
+	dom2.append(str.join(""));
+	dom1.show();
+	dom2.show();
 	
 }
-		
- function picSelect(evt) {
-		// 如果浏览器不支持FileReader
-		if (!window.FileReader) return;
-		var files = evt.target.files;
-		for (var i = 0, f; f = files[i]; i++) {
-			if (!f.type.match('image.*')) {
-				continue;
-			}
-			var reader = new FileReader();
-			reader.onload = (function(theFile) {
-				return function(e) {
-					// img 元素
-					document.getElementById('previewImage').src = e.target.result;
-					document.getElementById('previewImage').width = 300;
-					document.getElementById('previewImage').height = 300;
-				};
+
+function cleanSearchFieldInnerHtml(domname) {
 	
-			})(f);
-			reader.readAsDataURL(f);
-		}
+	var dom1 = $("#medium-form").find("#"+domname);
+	var dom2 = $("#small-form").find("#"+domname);
+	if(dom1.children().length != 1){
+		var first = dom1.children().first();
+		dom1.empty();
+		dom1.append(first);
+		var first2 = dom2.children().first();
+		dom2.empty();
+		dom2.append(first2);
 	}
- 
+	dom1.hide();
+	dom2.hide();
+}
+  
 function resizeHeight() {
 	if($("#off-canvas-content")[0].clientHeight < $("#rightMenu")[0].clientHeight){
 	 $("#off-canvas-content")[0].style.height=$("#rightMenu")[0].offsetHeight+"px";

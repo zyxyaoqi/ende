@@ -87,4 +87,11 @@ public class AccountServiceImpl implements AccountService {
 		
 	}
 
+
+	@Override
+	public int resetPassword(String username, String pwd) {
+		 String pwd1 = PasswordEncoderUtil.encodePassWord(pwd);
+		 return this.accountRepository.updatePassword(username, pwd1);
+	}
+
 }

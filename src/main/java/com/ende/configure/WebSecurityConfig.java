@@ -13,6 +13,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
+import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import com.ende.security.RecordUrlLoginAuthenticationEntryPoint;
@@ -34,6 +36,7 @@ public class WebSecurityConfig  extends WebSecurityConfigurerAdapter {
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 		auth.jdbcAuthentication().dataSource(dataSource);
 		auth.authenticationProvider(customAuthenticationProvider());
+		auth.userDetailsService(authorityUserDetailsService);
 	}
 	
 	@Bean
@@ -51,11 +54,20 @@ public class WebSecurityConfig  extends WebSecurityConfigurerAdapter {
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers("/","/index","/upload/","/upload/**","/sendVerifyCode","/login","/personinfo","/register", "/food/search*", "/food/meatList", "/food/milkList", "/css/**", "/js/**", "/img/**").permitAll()
+		http.authorizeRequests().antMatchers("/","/index","/upload/","/upload/**","/verifyCode/**","/login","/personinfo",
+				"/register", "/resetpwd","/food/search*", "/food/meatList", "/food/milkList", "/css/**", "/js/**", "/img/**").permitAll()
 		//.antMatchers("/do**").hasRole("USER") 
-		.anyRequest().authenticated().and().exceptionHandling().authenticationEntryPoint(new RecordUrlLoginAuthenticationEntryPoint("/login"))
-		.and().formLogin().loginPage("/login").successHandler(new RedirectAuthenticationSuccessHandler()).failureUrl("/login?error") 
-		.permitAll()
-		.and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).permitAll().and().csrf().disable();
+		.anyRequest().authenticated()
+		.and().exceptionHandling().authenticationEntryPoint(new RecordUrlLoginAuthenticationEntryPoint("/login"))
+		.and().formLogin().loginPage("/login").successHandler(new RedirectAuthenticationSuccessHandler()).failureUrl("/login?error").permitAll()
+		.and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/index").permitAll().invalidateHttpSession(true)
+		.and().rememberMe().tokenValiditySeconds(1209600).tokenRepository(tokenRepository())
+		.and().csrf().disable();
+	}
+
+	private PersistentTokenRepository tokenRepository() {
+		JdbcTokenRepositoryImpl imp = new JdbcTokenRepositoryImpl();
+		imp.setDataSource(dataSource);
+		return imp;
 	} 
 }

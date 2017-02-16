@@ -2,9 +2,12 @@ package com.ende.form;
 
 import java.io.Serializable;
 
-public class MeatFoodCriteria implements Serializable {
+
+public class MeatFoodCriteria extends FoodCriteria implements Serializable {
  
 	private static final long serialVersionUID = 1L;
+	
+	private Long id;
 
 	private String species;
 	
@@ -14,7 +17,7 @@ public class MeatFoodCriteria implements Serializable {
 	
 	private String feedtype;
 	
-    private String other;
+    private int count;
     
     public MeatFoodCriteria(){}
 	
@@ -58,20 +61,24 @@ public class MeatFoodCriteria implements Serializable {
 	}
 
 
-	public String getOther() {
-		return other;
+	public Long getId() {
+		return id;
 	}
 
 
-	public void setOther(String other) {
-		this.other = other;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+	public int getCount() {
+		return count;
 	}
 
-	 
 
+	public void setCount(int count) {
+		this.count = count;
+	}
+
+  
 }

@@ -15,11 +15,11 @@
 <body>
 	<div class="main">
 		<div class="header" >
-			 <div class="message">恩德交易平台-注册</div>
+			 <div class="message">恩德交易平台-重置密码</div>
               <div id="darkbannerwrap"></div>
 		</div>
 		<p id="error" style="color:red;"  th:text="${message}"></p>
-		<form action="/register" method="post" onsubmit="return onValid();" >
+		<form action="/resetpwd" method="post" onsubmit="return onValid();" >
           <table class="left-form" style="border-collapse:separate; border-spacing:10px;">
             <tr>
              <td width="100%" colspan="2" style="text-align:left; vertical-align:middle; ">
@@ -38,6 +38,20 @@
 					 </label>
 					<div class="clear"> </div>
 				</li> 
+              </td>
+            </tr>
+            <tr>            
+              <td width="70%" class="input-td">
+                 <li>     
+					<label class="input_wrap">
+					    <input type="text" id="verifycode" name="verifycode"  placeholder="" required/>
+					 </label>
+					<div class="clear"> </div>
+				</li> 
+              </td>
+              <td width="30%"   style="text-align:left; vertical-align:middle; ">
+                <!-- <label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i> </i></label>   -->
+                 <input type="button"  id="btnSendCode" class="verifycode-button" onclick="sendMessage(this)" value="发送验证码"> 
               </td>
             </tr>
              <tr>
@@ -70,23 +84,9 @@
                
             </tr>
             
-            <tr>            
-              <td width="70%" class="input-td">
-                 <li>     
-					<label class="input_wrap">
-					    <input type="text" id="verifycode" name="verifycode"  placeholder="" required/>
-					 </label>
-					<div class="clear"> </div>
-				</li> 
-              </td>
-              <td width="30%"   style="text-align:left; vertical-align:middle; ">
-                <!-- <label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i> </i></label>   -->
-                 <input type="button"  id="btnSendCode" class="verifycode-button" onclick="sendMessage(this)" value="发送验证码"> 
-              </td>
-            </tr>
             <tr>
              <td width="100%" colspan="2" style="text-align:left; vertical-align:middle; ">
-                 <input type="submit"   value="" class="submit-button">
+                 <input type="submit"  id="submitbtn"  value="" class="submit-button">
               </td>
               <td width="30%">
               </td>
@@ -104,10 +104,10 @@
 		var curCount;//当前剩余秒数
 		
 		function sendMessage(obj) {
-		  if(!checkTelNum()) return;
-		  var tel = $("#username").val();
-		  　curCount = count;
-		　　//设置button效果，开始计时
+			if(!checkTelNum()) return;
+			var tel = $("#username").val();
+		  　 curCount = count;
+		　　 //设置button效果，开始计时
 		     obj.setAttribute("disabled", true); 
 		     obj.value="重新发送(" + curCount + ")";
 		     InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
@@ -115,13 +115,23 @@
 		     $.ajax({
 		     　　type: "POST", //用POST方式传输
 		     　　dataType: "text", //数据格式:JSON
-		     　　url: '/verifyCode/register', //目标地址
+		     　　url: '/verifyCode/resetpwd', //目标地址
 		    　　 data: "tel=" + tel +"&time=" + Math.random(),
 		    　　 error: function (XMLHttpRequest, textStatus, errorThrown) { },
 		     　　success: function (msg){
-		        if(msg!="1")
-		           $("#error").html("<font color='red'>" + msg + "</font>"); 
-		      }
+			        if(msg=="1")
+			        {
+			        }
+			        else if( msg =="2"){
+			        	window.clearInterval(InterValObj);//停止计时器
+			            $("#btnSendCode").removeAttr("disabled");//启用按钮
+			            $("#btnSendCode").val("发送验证码");
+			        	
+			           $("#error").html("<font color='red'>该手机号未注册过！</font>"); 
+			        }
+			        else
+			           $("#error").html("<font color='red'>" + msg + "</font>"); 
+			      }
 		     });
 		}
 		

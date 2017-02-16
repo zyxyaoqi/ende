@@ -329,3 +329,45 @@ body{
 .off-canvas-content {
    box-shadow: none;
 }
+
+
+/**
+* Jquery Dialog Css
+**/
+.no-close .ui-dialog-titlebar-close {
+  display: none;
+}
+
+
+/**
+tooltip
+**/
+.tooltip {
+    position: absolute;
+    top: calc(100% + 0.6495rem);
+    z-index: 1200;
+    max-width: 10rem;
+    padding: 0.75rem;
+    border-radius: 0;
+    background-color: #0a0a0a;
+    font-size: 80%;
+    color: #fefefe;
+}
+.tooltip.top::before {
+}
+.tooltip::before {
+    display: block;
+    width: 0;
+    height: 0;
+    border: inset 0.75rem;
+    content: '';
+    border-top-width: 0;
+    border-bottom-style: solid;
+    border-color: transparent transparent #0a0a0a;
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+}

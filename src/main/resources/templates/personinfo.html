@@ -7,6 +7,7 @@
     <title>恩德交易平台</title>   
     <link rel="stylesheet" href="/css/foundation.min.css">
     <link rel="stylesheet" href="/css/app.css">
+    <link rel="stylesheet" th:href="@{/css/jquery-ui.min.css}" >
      <link rel="stylesheet" href="/css/pageFont.css" />
      <link rel="stylesheet" href="/css/pageStyle.css" />
 
@@ -15,29 +16,33 @@
     
     <!-- Start Top Bar -->
       <nav class="top-bar">       
-        <ul class="menu mixmenu" style="    padding-top: 20px;">
+        <ul class="menu mixmenu" style="    padding-top:5px;">
           <li class="mgl"></li>   
           <li class="topbar-title">个人中心</li>           
         </ul>
         <ul class="menu">
           <li><i class="icon icon-user"></i></li> 
-          <li th:if="${accountId}"><a th:href="@{/logout}" th:text="${account.username}+登出"> </a></li>
-          <li th:unless="${accountId}"><a th:href="@{/login}" href="logout">登录 </a></li>
+          <li th:if="${accountId}">[[${account.username}]]</li>
+          <li th:if="${accountId}"><a th:href="@{/logout}" ><i class="icon icon-logout"></i> </a></li>
+          <li th:unless="${accountId}"><a th:href="@{/login}" href="logout"><i class="icon icon-login"></i>  </a></li>
         </ul>       
       </nav>
       
     <!-- End Top Bar -->
  
-			<div class="clear"> </div> 
-         
-     <div class="content">
+	<div class="clear"> </div> 
+	<div class="content">
        <div class="title-bar">我发布的信息</div>
         <ul class="tabs" data-tabs id="example-tabs">
         <li class="tabs-title is-active" >
             <a href="#meatListPanel" aria-selected="true"><p class="mgl"></br> </p><p >肉食品</p></a></li>
         <li class="tabs-title">
             <a href="#milkListPanel"><p class="mgl"> </br> </p><p>奶食品</p></a></li>   
-      </ul>       
+      </ul>      
+               <p>
+The <span data-tooltip aria-haspopup="true" class="has-tip" data-disable-hover="false" tabindex="7" title="Fancy word for a beetle.">scarabaeus</span>
+</p>
+      
       <div class="tabs-content" data-tabs-content="example-tabs" style="padding-top: 10px;">
         
          <div class="tabs-panel is-active" id="meatListPanel">
@@ -51,20 +56,26 @@
     </div>
       
     </div>       
+    <!--  delete dialog -->
+       <div id="dialog-confirm" title="提示信息">
+			 <p> 确定删除这条信息？
+			 <span class="mgl label-mgl"></span></p>
+	</div>
  
     <footer th:replace="~{fragments/footer :: footer}"> </footer>
  
     <script th:src="@{/js/jquery.min.js}"></script>
+    <script th:src="@{/js/jquery-ui.min.js}"></script>       
     <script th:src="@{/js/foundation.min.js}"></script>
     <script th:src="@{/js/app.js}"></script>
-    <script th:src="@{/js/selectvalue.js}"></script>
+    <script th:src="@{/js/renderer_mgl.js}"></script>
     <script th:src="@{/js/utils.js}"></script>
     <script th:inline="javascript">   
         var accountid = [(${accountId})];
     	$(function() { 
     	if(accountid != 0){
-    	  loadMeatData(0, 5);   
-    	  loadMilkData(0, 5);     		 
+    	  loadMeatData(0, 10);   
+    	  loadMilkData(0, 10);     		 
     	}
 		});
 			
@@ -87,7 +98,60 @@
 		    var url = '/food/findUserMilkFoods?' + $.param(params);
 			$("#milkListPanel").load(url, renderMilkList);
 		}
-		 
+	       
+		$( "#dialog-confirm" ).dialog({
+	          resizable: false,
+	          //dialogClass: "no-close",
+	          height: "auto",
+	          minWidth: 200,
+	          autoOpen: false,
+	          modal: true,
+	          buttons: [
+	        	  {
+	        		  icon: "ui-icon-check",
+	        	      //showLabel: false,
+	        	      text:"确定",
+	        	      click:  function() {
+	  	            	var id = $( this ).dialog( "option", "id" );
+		            	var url =  $( this ).dialog( "option", "url" ) ;
+		            	var tab = $( this ).dialog( "option", "tab" ) ;
+		            	//get page param 
+		            	if(tab == 1)
+		            		$("#meatListPanel").load(url, renderMeatList);
+		            	else
+		            		$("#milkListPanel").load(url, renderMeatList);
+		            		
+		                $( this ).dialog( "close" );
+		            }
+	        	  },
+	        	  {
+	        		  icon: 'ui-icon-close',
+	        		  //showLabel: false,
+	        		  text:"取消",
+	        		  click:function() {
+	    	              $( this ).dialog( "close" );
+	  	            }
+	        	  }
+	          	]
+	        });
+
+		 function deleteItem(type, id){
+			$( "#dialog-confirm" ).dialog( "option", "id", id );
+			var url = '/food/';
+			var tab = 0;
+			if(type=='meat'){
+				url +='deleteMeat?id=' +id;
+				tab = 1;
+			}
+			else{
+				url +='deleteMilk?id=' +id;
+				tab = 2;
+			}
+			$( "#dialog-confirm" ).dialog( "option", "url", url );	
+			$( "#dialog-confirm" ).dialog( "option", "tab", tab );
+		    $( "#dialog-confirm" ).dialog( "open" );
+		  }
+
 	</script>
   </body>
 </html>

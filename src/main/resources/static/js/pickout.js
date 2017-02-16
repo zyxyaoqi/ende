@@ -226,7 +226,8 @@ var pickout = (function(){
 		var main = modal.querySelector('.main');
 
 		var item = document.createElement('li');
-		var selected = data.item.hasAttribute('selected') ? '-selected' : '';
+		//var selected = data.item.hasAttribute('selected') ? '-selected' : '';
+		var selected = data.item.selected ? '-selected' : '';
 		item.setAttribute('class', 'pk-option '+ selected +' -'+config.theme);
 
 		var icon = document.createElement('span');
@@ -257,10 +258,12 @@ var pickout = (function(){
 			// Converting to array, because it is a (object) HTMLCollection 
 			[].slice.call(select.children).map(function(item, index){
 				if (index === data.index) {
+					item.selected = true;
 					item.setAttribute('selected', 'selected');
 					return;
 				}
 
+				item.selected = false;
 				item.removeAttribute('selected');
 			});
 			
@@ -284,7 +287,7 @@ var pickout = (function(){
 		setElement(config);	
 
 		ownConfig.DOM.map(function(select){
-			feedInput(select, select[select.selectedIndex].innerHTML);
+			feedInput(select, select[select.selectedIndex].innerHTML,select[select.selectedIndex].attributes["mgltext"].value);
 		});
 	}
 

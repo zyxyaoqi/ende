@@ -19,4 +19,6 @@ public interface AccountService {
 	List<Contactor> findContactors(Long accountId);
 	
 	Long getCurrentUser();
+	
+	int resetPassword(String username, String pwd);
 }

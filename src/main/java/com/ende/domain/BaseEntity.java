@@ -11,11 +11,12 @@ public class BaseEntity implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 
+	@Column(updatable=false)
 	private Timestamp createtime;
 	
 	private Timestamp updatetime;
 	
-	@Column(nullable=false)
+	@Column(nullable=false,updatable =false)
 	private Long accountid;
 
 	public Timestamp getCreatetime() {

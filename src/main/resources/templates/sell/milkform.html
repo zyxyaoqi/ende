@@ -36,12 +36,12 @@
       
  
  <div class="content">
-    <form action="/food/saveMilk" method="post" enctype="multipart/form-data" >
+    <form id="milkform" name="milkform" action="/food/saveMilk" method="post" enctype="multipart/form-data" >
       <input type="hidden" name="id"/>
       <input type="hidden" name="photolink"/>
       <input type = "hidden" id="lng" name="lng" value="0"/>
 	  <input type = "hidden"  id="lat" name="lat" value="0"/>
-      <input type="hidden" name="type" th:value="${type}"/>
+      <input type="hidden" name="type" />
       <div class="form-content">
          <div class="row">
             <div class="small-12 columns" style="display:inline">      
@@ -59,7 +59,7 @@
             <div class="small-12 columns">
             	<div class="input-group">
              		<span class="input-group-label">单价（每斤价（片）<span class="mgl label-mgl"></span></span>
-             		<input type="number"  name="price" class="input-group-field" step="0.1" min="0.0" placeholder="5.5" />
+             		<input type="number"  name="price" class="input-group-field" step="0.1" min="0.0" placeholder="5.5" required value="0.0"/>
                 </div>
             </div>
         </div>
@@ -67,7 +67,7 @@
             <div class="small-12 columns">
             	<div class="input-group">
              		<span class="input-group-label">数量<span class="mgl label-mgl"></span></span>
-             		<input type="number" name="count" class="input-group-field" step="0.1" min="0.0" placeholder="100" />
+             		<input type="number" name="count" class="input-group-field" step="0.1" min="0.0" placeholder="100"  required value="0"/>
                 </div>
             </div>
         </div>
@@ -75,7 +75,7 @@
             <div class="small-12 columns">
             	<div class="input-group">
               	<span class="input-group-label">联系方式<span class="mgl label-mgl"></span><span class="mgl label-mgl"></span></span>
-             	<input type="tel" th:value="${tel}"   class="input-group-field" id="tel" name="tel" required  pattern="^(0|86|17951)?(13[0-9]|15[012356789]|17[0678]|18[0-9]|14[57])[0-9]{8}"> 
+             	<input type="tel"   class="input-group-field" id="tel" name="tel" required  pattern="^(0|86|17951)?(13[0-9]|15[012356789]|17[0678]|18[0-9]|14[57])[0-9]{8}"> 
                 </div>
             </div>
         </div>
@@ -96,20 +96,20 @@
 	                </div>
 	            </div>
 	            <div class="small-2 columns">
-	                <a href="javascript:void(0)" onclick="return getLocation();"><img src="/img/local1.jpg" id="localpic" style="width:100%;padding-top: 10px; "/></a>
+	                <a href="javascript:void(0)" onclick="return getLocation();"><img src="/img/local1.jpg" id="localpic" style="width:100%;padding: 10px; "/></a>
 	            </div>
         </div>
          <div class="row">
             <div class="small-12 columns">
             	<div class="input-group">
               	<span class="input-group-label">备注<span class="mgl label-mgl"></span></span>
-             	<textarea  name="note" class="input-group-field" style="white-space:pre-wrap"  rows=5 ></textarea> 
+             	<textarea  name="note" class="input-group-field" style="white-space:pre-wrap"  rows=2 ></textarea> 
                 </div>
             </div>
         </div>
          <div class="row"> 
          	 <div class="small-8 columns" >              
-                <img id="previewImage" src="/img/milkdefault.jpg"/>
+				<img id="previewImage" th:src= "*{data.photolink != null} ? '/upload/files/s_' + *{data.photolink} : '/img/milkdefault.jpg'"/>
              </div>
             <div class="small-4 columns">
              	<label for="file" class="secondary  button"><span>照片</span><span class="mgl label-mgl"></span></label>
@@ -130,14 +130,21 @@
 	<script th:src="@{/js/jquery.min.js}"></script>    
     <script th:src="@{/js/foundation.min.js}"></script>
     <script th:src="@{/js/app.js}"></script>
-    <script th:src="@{/js/selectvalue.js}"></script>
+    <script th:src="@{/js/renderer_mgl.js}"></script>
     <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=PgyL33cbK8dLgHw55WI7oHYjQiKOEHGc"></script>
     <script th:src="@{/js/utils.js}"></script>
   
     <script th:inline="javascript">
-		var species = [(${type})];
+		var data= /*[[(${data})]]*/ null;
 		$('#file').bind('change', picSelect);
-		initTitleDom($("#current_text"), $("#current_text_mgl"), species, 2);
+		initTitleDom($("#current_text"), $("#current_text_mgl"), data.type, 2);
+		if(data.id)
+	    {
+		    $('#milkform').initForm({"jsonValue": data});	
+	    }else{
+		    $('#milkform').initForm({"jsonValue": {"type":data.type,"tel":data.tel}});	
+	    } 
+	    
 	</script> 
 	    
   </body>

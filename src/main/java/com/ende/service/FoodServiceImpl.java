@@ -9,6 +9,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -38,12 +39,14 @@ public class FoodServiceImpl implements FoodService {
 		this.milkFoodRepository = milkFoodRepository;
 	}
 	
-	public MeatFood save(MeatFood mf) {
+	public MeatFood save(MeatFood mt) {
 		Timestamp t = new Timestamp(System.currentTimeMillis());
-		if(null == mf.getId())
-			mf.setCreatetime(t);
-		mf.setUpdatetime(t);
-		return this.meatFoodRepository.save(mf);
+		//MeatFood mt  = new MeatFood();
+		//BeanUtils.copyProperties(mtc, mt);
+		if(null == mt.getId())
+			mt.setCreatetime(t);
+		mt.setUpdatetime(t);
+		return this.meatFoodRepository.save(mt);
 	}
 	@Override
 	public Page<MilkFood> searchMilkFood(MilkFoodCriteria mfc, Pageable page) {
@@ -218,6 +221,14 @@ public class FoodServiceImpl implements FoodService {
 		return b;
 	}
 
-	
+	@Override
+	public MeatFood findMeatById(Long id) {
+		return meatFoodRepository.findOne(id);
+	}
+
+	@Override
+	public MilkFood findMilkById(Long id) {
+		return milkFoodRepository.findOne(id);
+	}
 	 
 }

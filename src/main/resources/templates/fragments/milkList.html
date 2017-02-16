@@ -6,7 +6,7 @@
 	 </head>
 	 <body>
 	   <div id="milkdata" th:unless="${#lists.isEmpty(data.content)}" th:fragment="data">     
-          <div class="row stack-for-small"  th:each="sb : ${data.content}"  th:id="milkItemBlock+ ${sb.id}">
+          <div class="row stack-for-small"  th:each="sb : ${data.content}"  th:id="milkItemBlock+ ${sb.id}" style="position: relative;">
             <div  th:fragment="milkItem">
                 <div style="display:  none"th:text="${sb.id}"></div> 
 	            <div class="small-3 columns">
@@ -17,12 +17,17 @@
 	              <p style="margin-bottom: 0rem;" th:text="|${sb.tel}|"></p>
 	              <i style="margin-bottom: 0rem;" th:text="${#dates.format(sb.createtime, 'yyyy-MM-dd')}"></i>  
 	            </div>
-	            <div class="small-4 columns" style="font-size: 0.9rem;">
+	            <div  class="small-4 columns" style="font-size: 0.9rem;">
 	              <p class="milk_item_content_mgl mgl" th:text="|${sb.type},${sb.sourcetype},${sb.price},${sb.count}|"></p>
 	            </div>
 	          <!--  <div class="small-12 columns" style="font-size: 0.9rem;">
 	               <p style="margin-bottom: 0rem;" th:if="${sb.address}!= '' "  th:text="|地址：${sb.address}|"></p>           
 	            </div> -->
+            </div>
+            <div th:if="${editable}"  style="font-size: 1rem; position: absolute; right:5px; bottom:22px;">
+              <a th:href="@{/food/milkForm(id=${sb.id})}" ><i class="icon icon-edit"></i></a>
+              <a href="javascript:void(0);" th:onclick="'deleteItem(\'milk\','+${sb.id}+');'" ><i class="icon icon-del"></i></a>
+              <a href="" ><i class="icon icon-view"></i></a>
             </div>
             <hr> 
           </div>

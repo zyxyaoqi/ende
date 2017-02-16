@@ -18,6 +18,9 @@ public interface FoodService {
 	boolean deleteMeat(Long id);
 	boolean deleteMilk(Long id);
 	
+	MeatFood findMeatById(Long id);
+	MilkFood findMilkById(Long id);
+	
 	Page<MeatFood> findMeatFoodByAccountId(Long id,  Pageable pageable);
 	Page<MilkFood> findMilkFoodByAccountId(Long id,  Pageable pageable);
 }
