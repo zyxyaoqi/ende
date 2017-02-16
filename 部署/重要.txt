@@ -13,3 +13,10 @@ mvn install:install-file -Dfile=D:\maven_repository\taobao-sdk-java.jar -DgroupI
 1.用户注册添加创建日期、和注册地字段
 2.添加监控，在health中可查看数据库信息
 3.验证码发送添加错误信息
+
+
+1.添加删除 修改
+2。添加remember me
+CREATE TABLE `persistent_logins` (   `username` varchar(64) NOT NULL,   `series` varchar(64) NOT NULL,   `token` varchar(64) NOT NULL, 
+  `last_used` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,   PRIMARY KEY (`series`) )
+3.修改bug，动态生成品种、类型复选框问题
