@@ -15,10 +15,10 @@
   	  <div style="float:right" > <a href="#"  title="更多" onclick="goToSearchList()"  ><img style="padding-right: 5px;width:50px;height:14px;" src="/img/more1.gif"/></a> </div>
 	  <ul class="tabs" data-tabs id="example-tabs">
 	    <li class="tabs-title is-active">
-	        <a href="#meatListPanel" aria-selected="true">肉食品<i class="icon icon-rsp"></i></a></li>
+	        <a href="#meatListPanel" onclick="return tabChanged(1);" aria-selected="true">肉食品<i class="icon icon-rsp"></i></a></li>
 			
 	    <li class="tabs-title">
-	        <a href="#milkListPanel">奶食品<i class="icon icon-nsp"></i></a></li>   
+	        <a href="#milkListPanel" onclick="return tabChanged(2);">奶食品<i class="icon icon-nsp"></i></a></li>   
 	  </ul>
 	  <div class="tabs-content" data-tabs-content="example-tabs" style="padding-top: 10px;">
 		<div class="tabs-panel is-active" id="meatListPanel">
@@ -35,7 +35,7 @@
     <script th:inline="javascript">   
     	$(function() { 
     	  loadMeatData(0, 5);   
-    	  loadMilkData(0, 5);     		 
+    	  //loadMilkData(0, 5);     		 
 		});
 			
 		function loadMeatData(page, size){
@@ -61,6 +61,12 @@
 			    location.href = "/food/milkList";	
 		}
 		 
+		function tabChanged(tabid) {
+			if(tabid==1)
+				 loadMeatData(0, 5);
+			else if(tabid==2)
+				 loadMilkData(0, 5);
+		}
 	</script>
  </div>	
  <!--END CONTENT -->
