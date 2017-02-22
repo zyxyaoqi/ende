@@ -1,0 +1,157 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" >
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>恩德交易平台</title>
+    <link rel="stylesheet"  th:href="@{/css/foundation.min.css}">
+    <link rel="stylesheet"  th:href="@{/css/app.css}">
+    <link rel="stylesheet" th:href="@{/css/pageFont.css}" />
+    <link rel="stylesheet" th:href="@{/css/pageStyle.css}" />
+	<link rel="stylesheet" th:href="@{/css/pickout.css}" >
+		
+  </head>
+  <body style="font-size:0.9rem">
+  	<div class="topnav">
+	 	<nav class="top-bar">       
+	        <ul class="menu mixmenu" style="padding-bottom: 25px;">
+	          <li class="mgl"> </li>   
+	          <li class="mgl" style="width:25px;"></li> 
+	          <li class="topbar-title">产品信息</li>           
+	        </ul>
+	        <ul class="menu mixmenu" style="padding: 20px;">
+	             
+	        </ul>
+	      </nav>
+	      <div class="row columns">
+	      <nav aria-label="You are here:" role="navigation">
+	        <ul class="breadcrumbs subnav">         
+	          <li><a href="#" class="nav-title">肉食品<span class="nav-title mgl label-mgl"> </span><span class="nav-title mgl label-mgl"></span></a></li>          
+	          <li>
+	            <span class="current_text" id="current_text"></span>
+	            <span class="current_text_mgl mgl label-mgl" id ="current_text_mgl"> </span>
+	          </li>
+	        </ul>
+	      </nav>
+	    </div>
+    </div>
+
+ 	<div class="content" style="padding-top: 10px;">
+ 	   <div class="row">           
+             <div class="small-12 columns" >              
+                <img class="thumbnail" id="previewImage" th:src= "*{data.photolink != null} ? '/upload/files/s_' + *{data.photolink} : '/img/meatdefault.jpg'"/>
+            </div>
+        </div>
+	      <div class="row" >
+	          <div class="small-12  columns">
+	              <div class="view-group">
+	  				<span class="view-group-label">品种<span class="mgl label-mgl"></span></span>
+	  				<span class="view-group-label" > <span id="breed-txt" th:text="${data.breed}"></span> <span class="mgl label-mgl" id="breed-mgl" th:text="${data.breed}"></span></span>
+				</div>
+	          </div>
+	       </div>
+	          
+	      <div class="row">
+	      	<div class="small-12  columns">
+	           <div class="view-group">
+	             <span class="view-group-label">类型<span class="mgl label-mgl"></span></span>
+   				 <span class="view-group-label"> <span id ="type-txt" th:text="${data.type}"></span><span class="mgl label-mgl" id="type-mgl" th:text="${data.breed}"></span></span>
+	            </div>
+	          </div>
+	       </div>
+	        
+	         <div class="row">
+	            <div class="small-12 columns">   
+	           		 <div class="view-group">
+	             		<span class="view-group-label">养殖方式<span class="mgl label-mgl"> </span><span class="mgl label-mgl"></span></span>
+		   				<span class="view-group-label">
+		   					 <span id="feedtype-txt" th:text="${data.feedtype}"></span> 
+		   					 <span class="mgl label-mgl" id="feedtype-mgl" th:text="${data.feedtype}"></span>
+		   				</span>
+	                </div>
+				</div> 
+			</div>
+			<div class="row">
+	            <div class="small-12 columns">
+	            	<div class="view-group">
+	             		<span class="view-group-label">数量<span class="mgl label-mgl"></span></span>
+	             		<span class="view-group-label" th:text="${data.count}"></span>
+	                </div>
+	            </div>
+	        </div>
+	        <div class="row">
+	            <div class="small-12 columns">
+	            	<div class="view-group">
+	              		<span class="view-group-label">联系方式<span class="mgl label-mgl"></span><span class="mgl label-mgl"></span></span>
+	             		<span class="view-group-label" th:text="${data.tel}"></span>
+	                </div>
+	            </div>
+	        </div>
+	         <div class="row">
+	            <div class="small-12 columns">
+	            	<div class="view-group">
+	              	<span class="view-group-label">联系人<span class="mgl label-mgl"> </span><span class="mgl label-mgl"> </span></span>
+	             	<span class="view-group-label" th:text="${data.contactor}"></span>
+	                </div>
+	            </div>
+	        </div>
+	        <div class="row">
+	            <div class="small-12 columns">
+	            	<div class="view-group">
+	              	<span class="view-group-label">详细地址<span class="mgl label-mgl"></span></span>
+	             	<span class="view-group-label" th:text="${data.address}" style="white-space: normal;"></span>
+	                </div>
+	            </div>
+	        </div>
+	         <div class="row">
+	            <div class="small-12 columns">
+	            	<div class="view-group">
+	              		<span class="view-group-label">备注<span class="mgl label-mgl"></span></span>
+	             		<span class="view-group-label" th:text="${data.note}" style="white-space: normal;"></span>
+	                </div>
+	            </div>
+	        </div>
+	     </div>
+	 
+	 <footer th:replace="~{fragments/footer :: footer}"> </footer>
+	  
+	<script th:src="@{/js/jquery.min.js}"></script> 
+    <script th:src="@{/js/foundation.min.js}"></script>
+    <script th:src="@{/js/app.js}"></script>
+    <script th:src="@{/js/renderer_mgl.js}"></script>
+    <script th:inline="javascript">
+		var data= /*[[(${data})]]*/ null;
+		initTitleDom($("#current_text"), $("#current_text_mgl"), data.species,1);
+		$("#breed-txt").html(txt("breed"));
+		$("#breed-mgl").html(mgltxt("breed"));
+		
+		$("#type-txt").html(txt("type"));
+		$("#type-mgl").html(mgltxt("type"));
+
+		$("#feedtype-txt").html(txt("feedtype"));
+		$("#feedtype-mgl").html(mgltxt("feedtype"));
+
+		
+		function txt(type, id){
+			if(type=="breed")
+				return Global_breed[data.species-1][data.breed-1].text;
+			else if(type=="type")
+				return Global_type[data.species-1][data.type-1].text;
+			else if(type=="feedtype")
+				return Global_feedtype[data.feedtype].text;
+			else return "";
+		}
+		
+		function mgltxt(type, id){
+			if(type=="breed")
+				return Global_breed[data.species-1][data.breed-1].mgltext;
+			else if(type=="type")
+				return Global_type[data.species-1][data.type-1].mgltext;
+			else if(type=="feedtype")
+				return Global_feedtype[data.feedtype].mgltext;
+			else return "";
+		}
+	 </script> 
+	  
+  </body>
+</html>

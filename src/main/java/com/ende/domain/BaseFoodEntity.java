@@ -11,7 +11,7 @@ public class BaseFoodEntity extends BaseEntity implements Serializable{
 	@Column(nullable=true)
 	protected String contactor;
 	
-	@Column(nullable=false)
+	@Column(nullable=true)
 	protected String tel;
 	
 	@Column(nullable=true)

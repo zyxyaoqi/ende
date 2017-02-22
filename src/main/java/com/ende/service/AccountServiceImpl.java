@@ -76,13 +76,13 @@ public class AccountServiceImpl implements AccountService {
 	}
 
 	@Override
-	public Long getCurrentUser() {
+	public SecurityUser getCurrentUser() {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		 try{
 			SecurityUser u = (SecurityUser)auth.getPrincipal() ;
-			return u.getId();
+			return u;
 		 }catch (java.lang.ClassCastException e) {
-			 return 0L;
+			 return null;
 		}
 		
 	}

@@ -102,7 +102,7 @@ function renderMeatList() {
 	   str.push(Global_type[data[0]-1][data[2]-1].text);
 	   str.push(Global_feedtype[data[3]].text);
 	   str.push("数量为" + data[4]);
-	    $(this).get(0).innerHTML = str.join(",");		   
+	    $(this).get(0).innerHTML = str.join("、");		   
 	});
 	
 	 $('#meatdata').find(".meat_item_content_mgl").each(function(i){
@@ -125,7 +125,7 @@ function renderMilkList() {
 	   str.push(Global_sourcetype[data[1]].text);
 	   str.push("价格" + data[2]);
 	   str.push("数量" + data[3]);
-	    $(this).get(0).innerHTML = str.join(",");		   
+	    $(this).get(0).innerHTML = str.join("、");		   
 	});
 	
 	 $('#milkdata').find('.milk_item_content_mgl').each(function(i){

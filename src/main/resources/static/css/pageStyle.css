@@ -371,3 +371,54 @@ tooltip
     -ms-transform: translateX(-50%);
     transform: translateX(-50%);
 }
+
+
+
+/** view page css **/
+
+.view-group {
+    display: table;
+    width: 100%;
+    margin-bottom: 1rem
+}
+
+.view-group > :first-child, .view-group > :last-child > * {
+    border-radius: 0 0 0 0
+}
+.view-group > :first-child {
+    border-radius: 0 0 0 0;
+    width:45%;
+}
+.view-group > :last-child {
+    border-radius: 0 0 0 0;
+    width:55%;
+}
+
+.view-group-field, .view-group-label {
+    margin: 0;
+    white-space: nowrap;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.view-group-label {
+    text-align: left;
+    padding: 0 1rem;
+    background: #fff;
+    color: #0a0a0a;
+    border-bottom: 1px solid #cacaca;
+    white-space: nowrap;
+    height: 100%;
+}
+.view-group-label span{
+	text-align: left;
+}
+.view-group-label:first-child {
+    border-right: 0
+}
+
+.view-group-label:last-child {
+    border-left: 0
+}
+
+ 

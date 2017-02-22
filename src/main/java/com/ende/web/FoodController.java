@@ -1,7 +1,5 @@
 package com.ende.web;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -55,10 +53,10 @@ public class FoodController {
 	 */
 	@GetMapping("meatForm")
 	public ModelAndView getMeatForm(@RequestParam(name = "type", required = false, defaultValue = "0") int type,
-			@RequestParam(name = "id", required = false, defaultValue = "0") Long id, Model m, HttpSession session) {
+			@RequestParam(name = "id", required = false, defaultValue = "0") Long id, Model m) {
 		MeatFood mt;
 		if (id == 0L) {
-			String tel = (String) session.getAttribute("username");
+			String tel =  accountService.getCurrentUser().getUsername();
 			mt = new MeatFood();
 			mt.setSpecies(type);
 			mt.setTel(tel);
@@ -71,11 +69,11 @@ public class FoodController {
 
 	@GetMapping("milkForm")
 	public ModelAndView getMilkForm(@RequestParam(name="type", required = false, defaultValue = "0") int type, 
-			@RequestParam(name = "id", required = false, defaultValue = "0") Long id, Model m, HttpSession session) {
+			@RequestParam(name = "id", required = false, defaultValue = "0") Long id, Model m) {
 		MilkFood mk;
 		if(id == 0L){
 			mk = new MilkFood();
-			String tel = (String) session.getAttribute("username");
+			String tel = accountService.getCurrentUser().getUsername();
 			mk.setType(type);
 			mk.setTel(tel);
 		}else{
@@ -83,6 +81,20 @@ public class FoodController {
 		}
 		m.addAttribute("data", mk);
 		return new ModelAndView("sell/milkform");
+	}
+
+	@GetMapping("viewMilk")
+	public ModelAndView viewMilkData(@RequestParam(name="id", required = true, defaultValue = "0")  Long id, Model m) {
+		MilkFood mk = this.foodService.findMilkById(id);
+		m.addAttribute("data", mk);
+		return new ModelAndView("view/milkInfo");
+	}
+	
+	@GetMapping("viewMeat")
+	public ModelAndView viewMeatData(@RequestParam(name="id", required = true, defaultValue = "0")  Long id, Model m) {
+		MeatFood mk = this.foodService.findMeatById(id);
+		m.addAttribute("data", mk);
+		return new ModelAndView("view/meatInfo");
 	}
 
 	@PostMapping("saveMeat")
@@ -94,7 +106,7 @@ public class FoodController {
 			else if(StringUtils.isEmpty(mtc.getPhotolink()))
 				mtc.setPhotolink("meatdefault.jpg");
 			
-			mtc.setAccountid(accountService.getCurrentUser());
+			mtc.setAccountid(accountService.getCurrentUser().getId());
 		    foodService.save(mtc);
 			return new ModelAndView("redirect:/personinfo");
 		} catch (StorageException e) {
@@ -107,13 +119,13 @@ public class FoodController {
 	@GetMapping("deleteMeat")
 	public String deleteMeat(@RequestParam(name = "id", required = true) Long id, Model model) {
 		foodService.deleteMeat(id);
-		return this.findUserMeatFoods(accountService.getCurrentUser(), 0, 10, model);
+		return this.findUserMeatFoods(accountService.getCurrentUser().getId(), 0, 10, model);
 	}
 
 	@GetMapping("deleteMilk")
 	public String deleteMilk(@RequestParam(name = "id", required = true) Long id, Model model) {
 		foodService.deleteMilk(id);
-		return this.findUserMilkFoods(accountService.getCurrentUser(), 0, 10, model);
+		return this.findUserMilkFoods(accountService.getCurrentUser().getId(), 0, 10, model);
 	}
 
 	@PostMapping("saveMilk")
@@ -125,7 +137,7 @@ public class FoodController {
 			else if(StringUtils.isEmpty(mf.getPhotolink()))
 				mf.setPhotolink("milkdefault.jpg");
 
-			mf.setAccountid(accountService.getCurrentUser());
+			mf.setAccountid(accountService.getCurrentUser().getId());
 			foodService.save(mf);
 			return new ModelAndView("redirect:/personinfo");
 		} catch (StorageException e) {

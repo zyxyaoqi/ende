@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.ende.domain.Account;
 import com.ende.domain.Contactor;
+import com.ende.domain.SecurityUser;
 import com.ende.form.AccountForm;
 
 public interface AccountService {
@@ -18,7 +19,7 @@ public interface AccountService {
 	void setDefaultContactor(Long aid, Long c);
 	List<Contactor> findContactors(Long accountId);
 	
-	Long getCurrentUser();
+	SecurityUser getCurrentUser();
 	
 	int resetPassword(String username, String pwd);
 }

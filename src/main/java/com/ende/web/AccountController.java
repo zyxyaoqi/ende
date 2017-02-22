@@ -20,6 +20,7 @@ import org.thymeleaf.util.StringUtils;
 
 import com.ende.domain.Account;
 import com.ende.domain.Contactor;
+import com.ende.domain.SecurityUser;
 import com.ende.form.AccountForm;
 import com.ende.service.AccountService;
 import com.ende.service.FoodService;
@@ -59,7 +60,7 @@ public class AccountController {
 				model.addAttribute("username", a.getUsername());
 			}else{
 				this.accountService.resetPassword(a.getUsername(), a.getPassword());
-				model.addAttribute("message", "密码设置成功，请返回重新登录！");
+				model.addAttribute("message", "密码设置成功！");
 				return new ModelAndView("success"); // 直接
 			}
 		}
@@ -69,10 +70,10 @@ public class AccountController {
 	@GetMapping(value = "personinfo")
 	public ModelAndView personinfo(Model model) {
 		Account a = null;
-		Long aid = this.accountService.getCurrentUser();
-		if (0L != aid) {
-			a = this.accountService.findAccountById(aid);
-			List<Contactor> contactors = this.accountService.findContactors(aid);
+		SecurityUser su = this.accountService.getCurrentUser();
+		if (null != su) {
+			a = this.accountService.findAccountById(su.getId());
+			List<Contactor> contactors = this.accountService.findContactors(su.getId());
 			model.addAttribute("act", 3);
 			model.addAttribute("account", a);
 			model.addAttribute("accountId", a.getId());

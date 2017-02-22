@@ -1,0 +1,140 @@
+@CHARSET "UTF-8";
+ 
+
+ body{
+  background-color: #eee;
+}
+@media(max-width: 40em){
+  body{
+    background-color: #fff;
+  }
+}
+  
+  	/* content */
+.main{
+  padding:25px 50px;
+  max-width: 1400px;
+  margin: auto;
+}
+.hor a,.ver a{
+  display: block;
+  overflow: hidden;
+  color: #222;
+}
+.zurag {
+  padding: 0;
+}
+.zurag img{
+  width: 100%;
+  min-height: 75px;
+  -webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+  box-shadow: 0 1px 2px rgba(0,0,0,.2);
+  background-color: #fff;
+  border-radius: 2px 2px 0 0;
+}
+.shuud .zurag img{
+  background-color: #777;
+  border-radius: 5px;
+}
+.usug{
+  padding: 0;
+  float: left !important;
+}
+.usug p {
+  width: 190%;
+  height: 75px;
+  overflow: hidden;
+  padding: 0 5px 0 0;
+  margin: 0;
+  text-align: right;
+}
+.demdeg {
+  float: left !important;
+  padding: 0;
+  -webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+  box-shadow: 0 1px 2px rgba(0,0,0,.2);
+  background-color: #ffffff;
+  border-radius: 0 0 2px 2px;
+}
+.demdeg ul{
+  line-height: 1.4;
+}
+.demdeg li {
+  font-size: 12px;
+  display: inline;
+  letter-spacing: 1px;
+  color: #aaa;
+  margin-right: 4px;
+}
+.demdeg .icon{
+  font-size: 15px;
+}
+.demdeg .icon-like{
+  margin: 0 3px;
+}
+.ver .usug p{
+  width: 745%;
+  white-space: nowrap;
+  text-overflow:ellipsis;
+}
+.content .demdeg，.content .zurag img{
+  box-shadow: none;
+  border-radius: 0;
+}
+@media(max-width: 40em){
+  .main{
+    padding: 25px 20px;
+  }
+  .hor>li{
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #eee;
+  }
+  .zurag img{
+    border-radius: 1px;
+  }
+  .hor .usug p{
+    width:115%; 
+  }
+  .demdeg,.zurag{
+    box-shadow:none;
+    background-color: transparent;
+  }
+  .demdeg ul{
+    margin: 0;
+    padding:0 0 0 10px;
+  }
+  .demdeg li{
+    display: block;
+    line-height: 25px;
+  }
+ 
+}
+ 
+ 
+ .row.collapse>.intro{
+  padding: 20px 10px;
+  float: right;
+  overflow: hidden;
+  height: 200px;
+}
+.tab-title{
+  text-align: center;
+}
+.comment .tab-title>a{
+  padding: 5px 0;
+  background-color: white;
+}
+.tab-title a{
+  border-bottom: 3px solid #efefef;
+}
+.tab-title a p{
+  text-align: right;
+  margin-left: 45%;
+  height: 15px;
+  width: 40px;
+}
+.tabs .tab-title.active a{
+  border-bottom: 3px solid #008CBA;
+  color: #008CBA;
+}
+ 

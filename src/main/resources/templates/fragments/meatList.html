@@ -7,38 +7,38 @@
 	 <body>
 	   <div id="meatdata" th:unless="${#lists.isEmpty(data.content)}" th:fragment="data">     
           <div class="row stack-for-small"  th:each="sb : ${data.content}"  th:id="meatItemBlock+ ${sb.id}" style="position:relative">
-	            <div class="small-3 columns align-self-middle">
-	              <img class="thumbnail" th:src="@{/upload/files/} + s_ + ${sb.photolink}" th:onclick="'ImgZoomIn(\''+ @{/upload/files/} + ${sb.photolink}+'\');'">
+	            <div class="small-3 columns " style="padding-left: 2px;height: 80px;">
+	              <img class="thumbnail" style="height: 100%;" th:src="@{/upload/files/} + s_ + ${sb.photolink}" th:onclick="'ImgZoomIn(\''+ @{/upload/files/} + ${sb.photolink}+'\');'">
 	            </div>
-	            <div class="small-9 column " >
-	            	<div class="row " style="padding: 0; ">
-			             <div class="small-7 columns" style="font-size: 0.9rem;padding:0;">
-			              <p style="margin-bottom: 0rem;" class="meat_item_content" th:text="|${sb.species},${sb.breed},${sb.type},${sb.feedtype},${sb.count}|"></p>
-		              		<i style="margin-bottom: 0rem;" th:text="${#dates.format(sb.createtime, 'yyyy-MM-dd')}"></i>   
+	            <div class="small-9 column " style="padding-left: 3px; padding-right: 10px;" >
+	                <a th:href="@{/food/viewMeat(id=${sb.id})}" style="overflow: hidden;color: #222;">
+	            	<div class="row " style="padding: 0;">
+			             <div class="small-7 columns" style="font-size: 0.8rem;padding:0;">
+			             	<p style="margin-bottom: 0rem;" class="meat_item_content" th:text="|${sb.species},${sb.breed},${sb.type},${sb.feedtype},${sb.count}|"></p>
+		              		<i th:unless="${sb.tel==''}" class="icon icon-phone"></i>[[${sb.tel}]]
+		               		<i th:unless="${sb.contactor==''}" class="icon icon-contactor"></i>[[${sb.contactor}]]
 			            </div>
-			            <div class="small-5 columns" style="font-size: 0.9rem;height:65px;">
+			            <div class="small-5 columns" style="font-size: 0.8rem;height:65px;">
 			              <p class="meat_item_content_mgl mgl" style="padding:0;" th:text="|${sb.species},${sb.breed},${sb.type},${sb.feedtype},${sb.count}|"></p>
 			            </div>
 	            	</div>
-		            <div class="row"  >
+		            </a>
+		            <div class="row" style="" >
 		             <div class="small-12 columns" style="font-size: 0.8rem;padding: 0;">
-		               	<i th:unless="${sb.tel==''}" class="icon icon-phone"></i>[[${sb.tel}]]
-		               	<i th:unless="${sb.contactor==''}" class="icon icon-contactor"></i>[[${sb.contactor}]]
-						 <span th:unless="${sb.address==''}" data-tooltip  class="has-tip top" data-disable-hover="false" data-click-open="true"  data-hover-delay="0"
+		               	 <span th:unless="${sb.address==''}" data-tooltip  class="has-tip top" data-disable-hover="false" data-click-open="true"  data-hover-delay="0"
 						 tabindex="1" th:title="${sb.address}"> 
 						 <i class="icon icon-address"></i>	</span>
+						 <i style="margin-bottom: 0rem;" th:text="${#dates.format(sb.createtime, 'yyyy-MM-dd')}"></i> 
 		             </div>
 		            </div>
-	            	
 	            </div>
 	           <!-- <div class="small-12 columns" style="font-size: 0.9rem;">
 	               <p style="margin-bottom: 0rem;" th:if="${sb.address}!= '' "  th:text="|地址：${sb.address}|"></p>           
 	            </div>  -->
             
             <div th:if="${editable}" class="list-edit" style="font-size: 1rem; position:absolute;right:5px; bottom:22px;">
-              <a th:href="@{/food/meatForm(id=${sb.id})}" ><i class="icon icon-edit"></i></a>
-              <a href="javascript:void(0);" th:onclick="'deleteItem(\'meat\','+${sb.id}+');'" ><i class="icon icon-del"></i></a>
-              <a href="" ><i class="icon icon-view"></i></a>
+              <a th:href="@{/food/meatForm(id=${sb.id})}" ><i class="icon icon-edit" style="font-size: 1.5rem;"></i></a>
+              <a href="javascript:void(0);" th:onclick="'deleteItem(\'meat\','+${sb.id}+');'" ><i class="icon icon-del" style="font-size: 1.5rem;"></i></a>
             </div>
             <hr> 
           </div>

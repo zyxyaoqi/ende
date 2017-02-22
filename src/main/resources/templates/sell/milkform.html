@@ -36,7 +36,7 @@
       
  
  <div class="content">
-    <form id="milkform" name="milkform" action="/food/saveMilk" method="post" enctype="multipart/form-data" >
+    <form id="milkform" name="milkform" action="/food/saveMilk" method="post" enctype="multipart/form-data" onsubmit="return onValid();">
       <input type="hidden" name="id"/>
       <input type="hidden" name="photolink"/>
       <input type = "hidden" id="lng" name="lng" value="0"/>
@@ -59,7 +59,7 @@
             <div class="small-12 columns">
             	<div class="input-group">
              		<span class="input-group-label">单价（每斤价（片）<span class="mgl label-mgl"></span></span>
-             		<input type="number"  name="price" class="input-group-field" step="0.1" min="0.0" placeholder="5.5" required value="0.0"/>
+             		<input type="number"  id="price" name="price" class="input-group-field" step="0.1" min="0.0" placeholder="5.5" required value="0.0"/>
                 </div>
             </div>
         </div>
@@ -67,7 +67,7 @@
             <div class="small-12 columns">
             	<div class="input-group">
              		<span class="input-group-label">数量<span class="mgl label-mgl"></span></span>
-             		<input type="number" name="count" class="input-group-field" step="0.1" min="0.0" placeholder="100"  required value="0"/>
+             		<input type="number" id="count" name="count" class="input-group-field" step="0.1" min="0.0" placeholder="100"  required value="0"/>
                 </div>
             </div>
         </div>
@@ -83,7 +83,7 @@
             <div class="small-12 columns">
             	<div class="input-group">
               	<span class="input-group-label">联系人<span class="mgl label-mgl"> </span><span class="mgl label-mgl"> </span></span>
-             	<input type="text" name="contactor" class="input-group-field" > 
+             	<input type="text" id="contactor" name="contactor" class="input-group-field" > 
                 </div>
             </div>
         </div>
@@ -119,7 +119,8 @@
         </div>
         <hr>
         <div class="row text-center">
-            <div class="small-12 columns">                				
+            <div class="small-12 columns">   
+           	 <p id="error" style="color:red;"  th:text="${message}"></p>             				
             	<input id="submit" type="submit" class="submit-button" value="">
             </div>
         </div>
@@ -144,7 +145,33 @@
 	    }else{
 		    $('#milkform').initForm({"jsonValue": {"type":data.type,"tel":data.tel}});	
 	    } 
-	    
+		function onValid(){
+			if(!$("#price").val() || $("#price").val()<=0) {
+	    		$("#error").html("<font color='red'>请填写价格！</font>"); 
+	    		setInterval("refresh()",5000); //启动1秒定时
+	    		return false;
+	    	}
+
+	    	if(!$("#count").val() || $("#count").val()<=0) {
+	    		$("#error").html("<font color='red'>请填写数量！</font>"); 
+	    		setInterval("refresh()",5000); //启动1秒定时
+	    		return false;
+	    	}
+	    	if(!$("#tel").val()) {
+	    		$("#error").html("<font color='red'>请填写联系方式！</font>"); 
+	    		setInterval("refresh()",5000); //启动1秒定时
+	    		return false;
+	    	}
+	    	if(!$("#contactor").val()) {
+	    		$("#error").html("<font color='red'>请填写联系人！</font>"); 
+	    		setInterval("refresh()",5000); //启动1秒定时
+	    		return false;
+	    	}
+	    	return true;
+	    }
+		function refresh() { 
+			   $("#error").html(""); 
+		   }
 	</script> 
 	    
   </body>

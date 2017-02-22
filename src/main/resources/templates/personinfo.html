@@ -32,16 +32,17 @@
  
 	<div class="clear"> </div> 
 	<div class="content">
-       <div class="title-bar">我发布的信息</div>
+       <div class="title-bar" style="height:60px;">我发布的信息 
+            <span class="mgl" style="display: inline-block;width:15px;"></span>
+            <span class="mgl" style="display: inline-block;width:15px;"></span>
+            <span class="mgl" style="display: inline-block;width:15px;"></span>
+         </div>
         <ul class="tabs" data-tabs id="example-tabs">
         <li class="tabs-title is-active" >
             <a href="#meatListPanel" aria-selected="true"><p class="mgl"></br> </p><p >肉食品</p></a></li>
         <li class="tabs-title">
             <a href="#milkListPanel"><p class="mgl"> </br> </p><p>奶食品</p></a></li>   
       </ul>      
-               <p>
-The <span data-tooltip aria-haspopup="true" class="has-tip" data-disable-hover="false" tabindex="7" title="Fancy word for a beetle.">scarabaeus</span>
-</p>
       
       <div class="tabs-content" data-tabs-content="example-tabs" style="padding-top: 10px;">
         
@@ -57,9 +58,11 @@ The <span data-tooltip aria-haspopup="true" class="has-tip" data-disable-hover="
       
     </div>       
     <!--  delete dialog -->
-       <div id="dialog-confirm" title="提示信息">
-			 <p> 确定删除这条信息？
-			 <span class="mgl label-mgl"></span></p>
+       <div id="dialog-confirm" title="提示信息" style="display: none;">
+		<p> 确定删除这条信息？
+			 <span class="mgl label-mgl">  </span>
+			 <span class="mgl label-mgl"></span>
+		</p>
 	</div>
  
     <footer th:replace="~{fragments/footer :: footer}"> </footer>

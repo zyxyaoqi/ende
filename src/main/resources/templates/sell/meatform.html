@@ -37,7 +37,8 @@
     </div>
 
  	<div class="content">
-	    <form action="/food/saveMeat" method="post" id="meatform" enctype="multipart/form-data" >
+ 		
+	    <form action="/food/saveMeat" method="post" id="meatform" enctype="multipart/form-data" onsubmit="return onValid();">
 	    <input type="hidden" name="id"  />
       	<input type="hidden" name="photolink"  />
 		<input type = "hidden" id="lng" name="lng" value="0" />
@@ -48,7 +49,7 @@
 	          <div class="small-12  columns">
 	              <div class="input-group">
 	  				<span class="input-group-label">品种<span class="mgl label-mgl"></span></span>
-	 				<select  name="breed" id="breed"  class="breed pickout"   placeholder="选择一个品种" >
+	 				<select  name="breed" id="breed"  class="breed pickout" selectedIndex=-1  placeholder="选择一个品种" >
 	               </select>   
 				</div>
 	          </div>
@@ -74,8 +75,8 @@
 	            <div class="small-12 columns" style="display:inline">      
 	        		<fieldset class="fieldset">
 	 				    <legend> 养殖方式<span class="mgl label-mgl"> </span><span class="mgl label-mgl"></span></legend>
-						<input type="radio" name="feedtype" value="1" id="growType" checked><label>散养<span class="mgl label-mgl"> </span></label>
-	   					<input type="radio" name="feedtype" value="2" id="growType"><label >圈养<span class="mgl label-mgl">	</span></label>
+						<input type="radio" name="feedtype" value="1" id="feedtype" checked><label>散养<span class="mgl label-mgl"> </span></label>
+	   					<input type="radio" name="feedtype" value="2" id="feedtype"><label >圈养<span class="mgl label-mgl">	</span></label>
 	
 					</fieldset>
 				</div>           
@@ -135,11 +136,11 @@
 	        </div>
 	        <hr>
 	        <div class="row text-center">
+ 				<p id="error" style="color:red;"  th:text="${message}"></p>
 	            <div class="small-12 columns">                				
 	            	<input id="submit" type="submit" class="submit-button" value="">
 	            </div>
 	        </div>
- 
 	  </form>
 	 </div> 
 	 
@@ -177,7 +178,27 @@
 		    $('#meatform').initForm({"jsonValue": {"species":data.species,"tel":data.tel}});	
 	    } 
 	    
-	   
+	    function onValid(){
+	    	if(!$("#count").val() || $("#count").val()<=0) {
+	    		$("#error").html("<font color='red'>请填写数量！</font>"); 
+	    		setInterval("refresh()",5000); //启动1秒定时
+	    		return false;
+	    	}
+	    	if(!$("#tel").val()) {
+	    		$("#error").html("<font color='red'>请填写联系方式！</font>"); 
+	    		setInterval("refresh()",5000); //启动1秒定时
+	    		return false;
+	    	}
+	    	if(!$("#contactor").val()) {
+	    		$("#error").html("<font color='red'>请填写联系人！</font>"); 
+	    		setInterval("refresh()",5000); //启动1秒定时
+	    		return false;
+	    	}
+	    	return true;
+	    }
+	   function refresh() { 
+		   $("#error").html(""); 
+	   }
 	 </script> 
 	  
   </body>

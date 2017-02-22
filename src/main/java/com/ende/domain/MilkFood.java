@@ -25,7 +25,6 @@ public class MilkFood extends BaseFoodEntity implements Serializable {
 	@Column(nullable=false)
 	private int sourcetype;
 	
-	@Column(nullable=false)
 	private double price;
 	
 	private double count;
