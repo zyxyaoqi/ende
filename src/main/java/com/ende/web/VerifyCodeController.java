@@ -35,7 +35,7 @@ public class VerifyCodeController {
     	AlibabaAliqinFcSmsNumSendRequest req = new AlibabaAliqinFcSmsNumSendRequest();
     	req.setExtend( "" );
     	req.setSmsType( "normal" );
-    	req.setSmsFreeSignName( "恩德" );
+    	req.setSmsFreeSignName( "恩得" );
     	req.setSmsParamString( "{code:'" + code + "'}" );
     	req.setRecNum(tel);
     	req.setSmsTemplateCode(MSG_TEMPLATE);
