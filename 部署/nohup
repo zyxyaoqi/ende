@@ -1,0 +1,17 @@
+
+
+1. lookup a thread with some port
+netstat -anp|grep 80
+
+2. lookuo a thread with some pid
+ps -ef|grep pid
+
+3. kill a thread
+kill -9 pid
+
+4.start a thread with nohup
+nohup java -jar ende-1.0.jar > nohup.out & echo $! > pid
+
+
+5.kill thread with nohup
+kill -9 'cat pid'
